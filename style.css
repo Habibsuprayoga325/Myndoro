@@ -1,0 +1,1774 @@
+/* ========================================================
+   SWEET EIGHTEEN DIGITAL LOVE LETTER - STYLING
+   Ndoro Putriku & Bibib ♡ 19 Oktober
+   Theme: Navy Scrapbook + Vintage Parchment + Romantic Gold
+   ======================================================== */
+
+:root {
+  --navy-darkest: #040e1e;
+  --navy-deep: #071933;
+  --navy-rich: #0b3164;
+  --navy-light: #164e96;
+  --navy-soft: rgba(11, 49, 100, 0.65);
+
+  --rose-primary: #ff5e83;
+  --rose-soft: #ff8da6;
+  --rose-glow: rgba(255, 94, 131, 0.4);
+  --rose-deep: #c93054;
+
+  --gold-accent: #f5c76c;
+  --gold-rich: #d4af37;
+  --gold-glow: rgba(245, 199, 108, 0.5);
+
+  --parchment-base: #fdfaf2;
+  --parchment-shade: #f3ebd7;
+  --parchment-dark: #e5d8be;
+  --parchment-text: #2c241c;
+  --parchment-sub: #574b3d;
+
+  --chalk-white: #f8f6f0;
+  --chalk-dim: rgba(248, 246, 240, 0.75);
+
+  --washi-tape: rgba(255, 248, 225, 0.7);
+  --shadow-deep: 0 20px 40px rgba(0, 0, 0, 0.5);
+  --shadow-medium: 0 10px 25px rgba(0, 0, 0, 0.35);
+  --shadow-soft: 0 5px 15px rgba(0, 0, 0, 0.2);
+
+  --font-serif: 'Playfair Display', Georgia, serif;
+  --font-script: 'Great Vibes', cursive;
+  --font-hand: 'Caveat', cursive;
+  --font-sans: 'Poppins', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-accent: 'Sacramento', cursive;
+}
+
+/* ================= RESET & BASE ================= */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
+}
+
+html, body {
+  width: 100%;
+  min-height: 100%;
+  background-color: var(--navy-darkest);
+  color: var(--chalk-white);
+  font-family: var(--font-sans);
+  overflow-x: hidden;
+  position: relative;
+}
+
+/* Particle Canvas for Hearts & Confetti */
+#particleCanvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  z-index: 100;
+}
+
+/* ================= BACKGROUND VIDEO SYSTEM (MEMORIES GALLERY) ================= */
+.memories-video-bg-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  overflow: hidden;
+  border-radius: 24px;
+  background-color: var(--navy-darkest);
+  pointer-events: none;
+}
+
+.bg-video {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0;
+  transform: scale(1.04);
+  transition: opacity 1.4s cubic-bezier(0.4, 0, 0.2, 1), transform 8s ease-out;
+  pointer-events: none;
+}
+
+.bg-video.active {
+  opacity: 1;
+  transform: scale(1);
+  z-index: 1;
+}
+
+.bg-video.next {
+  opacity: 0;
+  z-index: 0;
+}
+
+/* Video Overlay with Deep Romantic Navy Gradient & Vignette */
+.memories-video-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 2;
+  background: radial-gradient(
+    circle at center,
+    rgba(11, 49, 100, 0.52) 0%,
+    rgba(7, 25, 51, 0.82) 60%,
+    rgba(4, 14, 30, 0.95) 100%
+  );
+  backdrop-filter: blur(1.5px);
+}
+
+/* ================= AMBIENT CHALK DOODLES ================= */
+.scrapbook-ambient {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: -1;
+  overflow: hidden;
+}
+
+.chalk-doodle {
+  position: absolute;
+  filter: drop-shadow(0 0 6px rgba(255, 255, 255, 0.3));
+  opacity: 0.7;
+  animation: floatSubtle 6s ease-in-out infinite alternate;
+}
+
+.chalk-top-left {
+  top: 30px;
+  left: 20px;
+  width: 110px;
+  height: 110px;
+}
+
+.chalk-bottom-right {
+  bottom: 40px;
+  right: 25px;
+  width: 130px;
+  height: 130px;
+  animation-delay: -3s;
+}
+
+@keyframes floatSubtle {
+  0% { transform: translateY(0px) rotate(0deg); }
+  100% { transform: translateY(-8px) rotate(2deg); }
+}
+
+/* ================= TOP NAVIGATION CONTROLS ================= */
+.top-nav-controls {
+  position: fixed;
+  top: 18px;
+  right: 18px;
+  z-index: 110;
+  display: flex;
+  gap: 10px;
+}
+
+.nav-icon-btn {
+  background: rgba(11, 49, 100, 0.75);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  backdrop-filter: blur(10px);
+  color: #fff;
+  padding: 8px 14px;
+  border-radius: 999px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--font-sans);
+  font-size: 0.82rem;
+  font-weight: 500;
+  cursor: pointer;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.25);
+  transition: all 0.25s ease;
+}
+
+.nav-icon-btn:hover {
+  background: rgba(255, 94, 131, 0.85);
+  border-color: rgba(255, 255, 255, 0.5);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px var(--rose-glow);
+}
+
+/* ================= FLOATING MUSIC PLAYER WIDGET ================= */
+.music-player-widget {
+  position: fixed;
+  bottom: 20px;
+  left: 20px;
+  z-index: 110;
+  background: rgba(7, 25, 51, 0.85);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(16px);
+  padding: 10px 16px 10px 12px;
+  border-radius: 50px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  box-shadow: 0 12px 35px rgba(0, 0, 0, 0.45);
+  max-width: 380px;
+  transition: all 0.3s ease;
+}
+
+.music-player-widget:hover {
+  border-color: var(--rose-soft);
+  box-shadow: 0 12px 35px var(--rose-glow);
+}
+
+.vinyl-disc {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: radial-gradient(circle, #222 25%, #050505 50%, #1a1a1a 75%, #000 100%);
+  border: 2px solid rgba(255, 255, 255, 0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+  flex-shrink: 0;
+  animation: spinVinyl 6s linear infinite;
+  animation-play-state: paused;
+}
+
+.vinyl-disc.playing {
+  animation-play-state: running;
+}
+
+@keyframes spinVinyl {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.vinyl-center {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: var(--rose-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.65rem;
+}
+
+.track-info {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.track-title {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #fff;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.track-subtitle {
+  font-size: 0.72rem;
+  color: var(--gold-accent);
+  font-family: var(--font-hand);
+  letter-spacing: 0.5px;
+}
+
+.track-status {
+  font-size: 0.68rem;
+  color: var(--chalk-dim);
+  margin-top: 1px;
+}
+
+.player-controls {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-left: auto;
+}
+
+.btn-ctrl {
+  background: rgba(255, 255, 255, 0.1);
+  border: none;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.btn-ctrl svg {
+  width: 16px;
+  height: 16px;
+}
+
+.btn-ctrl:hover {
+  background: var(--rose-primary);
+  transform: scale(1.1);
+}
+
+/* ================= APP CONTAINER & STAGES ================= */
+.app-container {
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 20px 100px 20px;
+}
+
+.stage {
+  display: none;
+  width: 100%;
+  max-width: 1050px;
+  margin: 0 auto;
+  opacity: 0;
+  transform: translateY(20px) scale(0.98);
+  transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1), transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.stage.active {
+  display: block;
+  opacity: 1;
+  transform: translateY(0px) scale(1);
+}
+
+.stage-content {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+/* ================= STAGE 1: COVER & ENVELOPE ================= */
+.cover-header {
+  position: relative;
+  margin-bottom: 25px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.badge-date {
+  background: rgba(255, 255, 255, 0.95);
+  color: var(--navy-rich);
+  padding: 6px 18px;
+  border-radius: 8px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+  display: inline-flex;
+  align-items: baseline;
+  gap: 6px;
+  margin-bottom: 12px;
+  transform: rotate(-2deg);
+  border: 1px dashed var(--navy-rich);
+}
+
+.badge-day {
+  font-family: var(--font-serif);
+  font-size: 1.6rem;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.badge-month {
+  font-family: var(--font-sans);
+  font-size: 0.85rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.tag-quote {
+  font-family: var(--font-hand);
+  font-size: 1.35rem;
+  color: var(--gold-accent);
+  margin-bottom: 6px;
+  letter-spacing: 0.5px;
+}
+
+.cover-main-title {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  line-height: 1.15;
+  text-shadow: 0 4px 15px rgba(0, 0, 0, 0.6);
+}
+
+.title-sub {
+  font-family: var(--font-hand);
+  font-size: 2.1rem;
+  color: var(--chalk-dim);
+  font-weight: 600;
+}
+
+.title-highlight {
+  font-family: var(--font-serif);
+  font-size: 2.8rem;
+  font-weight: 700;
+  letter-spacing: -0.5px;
+  background: linear-gradient(135deg, #ffffff 30%, #ffc0cb 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin: 4px 0;
+}
+
+.title-love {
+  font-family: var(--font-script);
+  font-size: 2.3rem;
+  color: var(--rose-soft);
+  transform: rotate(-3deg);
+}
+
+/* Cover Centerpiece (Polaroid - Envelope - Polaroid) */
+.cover-centerpiece {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 30px;
+  margin: 20px 0 30px 0;
+  width: 100%;
+}
+
+/* Polaroid Card Styles */
+.polaroid-card {
+  background: #fbf9f5;
+  padding: 10px 10px 18px 10px;
+  border-radius: 3px;
+  box-shadow: var(--shadow-deep);
+  position: relative;
+  transition: all 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+.polaroid-teaser {
+  width: 190px;
+}
+
+.polaroid-left {
+  transform: rotate(-6deg) translateY(-10px);
+}
+
+.polaroid-right {
+  transform: rotate(6deg) translateY(10px);
+}
+
+.polaroid-card:hover {
+  transform: scale(1.08) rotate(0deg) translateY(-8px);
+  z-index: 20;
+  box-shadow: 0 25px 45px rgba(0, 0, 0, 0.65);
+}
+
+.polaroid-img-box {
+  width: 100%;
+  aspect-ratio: 4/4.5;
+  overflow: hidden;
+  border-radius: 2px;
+  background-color: #ddd;
+}
+
+.polaroid-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.polaroid-card:hover .polaroid-img {
+  transform: scale(1.06);
+}
+
+.polaroid-caption {
+  font-family: var(--font-hand);
+  font-size: 1.15rem;
+  color: #333;
+  margin-top: 10px;
+  text-align: center;
+  font-weight: 600;
+}
+
+/* Washi Tape Accent */
+.tape-strip {
+  position: absolute;
+  height: 22px;
+  background: var(--washi-tape);
+  box-shadow: 0 2px 5px rgba(0,0,0,0.15);
+  backdrop-filter: blur(2px);
+  z-index: 5;
+}
+
+.tape-top {
+  width: 70px;
+  top: -10px;
+  left: 50%;
+  transform: translateX(-50%) rotate(-1deg);
+}
+
+.tape-center {
+  width: 75px;
+  top: -11px;
+  left: 50%;
+  transform: translateX(-50%) rotate(1deg);
+}
+
+.tape-corner-left {
+  width: 55px;
+  top: -8px;
+  left: -10px;
+  transform: rotate(-35deg);
+}
+
+.tape-corner-right {
+  width: 55px;
+  top: -8px;
+  right: -10px;
+  transform: rotate(35deg);
+}
+
+/* ================= 3D REALISTIC ENVELOPE ================= */
+.envelope-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  cursor: pointer;
+  perspective: 1200px;
+  position: relative;
+  outline: none;
+}
+
+.envelope {
+  position: relative;
+  width: 320px;
+  height: 215px;
+  background-color: #0b3164;
+  border-radius: 8px;
+  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.6), 0 0 30px rgba(11, 49, 100, 0.5);
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+
+.envelope-container:hover .envelope {
+  transform: translateY(-8px) scale(1.02);
+  box-shadow: 0 35px 60px rgba(0, 0, 0, 0.7), 0 0 45px var(--rose-glow);
+}
+
+/* Envelope Back */
+.envelope-back {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, #092750 0%, #0d3872 100%);
+  border-radius: 8px;
+}
+
+/* Peeking Letter inside envelope */
+.envelope-letter {
+  position: absolute;
+  top: 15px;
+  left: 18px;
+  width: 284px;
+  height: 185px;
+  background: #fdfaf2;
+  border-radius: 5px;
+  padding: 20px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  transition: transform 0.8s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.6s ease;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.letter-mini-lines {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.mini-line {
+  height: 6px;
+  background: rgba(44, 36, 28, 0.15);
+  border-radius: 3px;
+}
+
+.mini-line.w-80 { width: 85%; }
+.mini-line.w-60 { width: 60%; }
+.mini-line.w-70 { width: 75%; }
+
+.mini-stamp {
+  align-self: flex-end;
+  font-family: var(--font-hand);
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--rose-deep);
+  border: 1px dashed var(--rose-deep);
+  padding: 3px 8px;
+  border-radius: 4px;
+}
+
+/* Envelope Pocket (Front folded flaps) */
+.envelope-pocket {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 2;
+  clip-path: polygon(0 0, 50% 55%, 100% 0, 100% 100%, 0 100%);
+  background: linear-gradient(180deg, #103d7c 0%, #08264e 100%);
+  border-radius: 0 0 8px 8px;
+  border-top: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+/* Envelope Flap (Top triangle) */
+.envelope-flap {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 3;
+  clip-path: polygon(0 0, 50% 56%, 100% 0);
+  background: linear-gradient(180deg, #184e9c 0%, #0d3872 100%);
+  transform-origin: top center;
+  transition: transform 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+  border-radius: 8px 8px 0 0;
+}
+
+/* Wax Seal */
+.wax-seal {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -15%);
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 35%, #ffd27d 0%, #d4af37 55%, #8c6a15 100%);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5), inset 0 2px 5px rgba(255, 255, 255, 0.5);
+  z-index: 4;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+}
+
+.envelope-container:hover .wax-seal {
+  transform: translate(-50%, -15%) scale(1.12);
+  box-shadow: 0 10px 25px rgba(212, 175, 55, 0.7);
+}
+
+.wax-seal-inner {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  border: 1.5px dashed rgba(74, 52, 5, 0.6);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: #4a3405;
+}
+
+.wax-text {
+  font-family: var(--font-serif);
+  font-size: 0.95rem;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  line-height: 1;
+}
+
+.wax-heart {
+  font-size: 0.85rem;
+  line-height: 1;
+  margin-top: 2px;
+}
+
+.seal-glow {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  box-shadow: 0 0 20px rgba(245, 199, 108, 0.7);
+  animation: pulseGlow 2s infinite ease-in-out;
+}
+
+@keyframes pulseGlow {
+  0%, 100% { opacity: 0.4; transform: scale(1); }
+  50% { opacity: 0.9; transform: scale(1.15); }
+}
+
+/* When Envelope is Opened */
+.envelope.opened .envelope-flap {
+  transform: rotateX(180deg);
+  z-index: 0;
+}
+
+.envelope.opened .wax-seal {
+  transform: translate(-50%, -15%) scale(0);
+  opacity: 0;
+}
+
+.envelope.opened .envelope-letter {
+  transform: translateY(-80px);
+}
+
+/* Prompt Hint */
+.envelope-prompt {
+  margin-top: 25px;
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: var(--chalk-white);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.7);
+  animation: bounceHint 2s infinite ease-in-out;
+}
+
+@keyframes bounceHint {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-5px); }
+}
+
+.pulse-sparkle {
+  color: var(--gold-accent);
+}
+
+/* Cover Footer Quote */
+.cover-footer-sticker {
+  margin-top: 15px;
+}
+
+.sticker-paper {
+  background: rgba(255, 246, 222, 0.9);
+  color: var(--navy-rich);
+  padding: 8px 24px;
+  border-radius: 4px;
+  font-family: var(--font-hand);
+  font-size: 1.35rem;
+  font-weight: 700;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.3);
+  transform: rotate(1deg);
+  border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+/* ================= SECTION COMMON STYLES ================= */
+.section-badge {
+  font-family: var(--font-sans);
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 2px;
+  color: var(--gold-accent);
+  margin-bottom: 8px;
+  text-transform: uppercase;
+}
+
+.section-title {
+  font-family: var(--font-serif);
+  font-size: 2.2rem;
+  font-weight: 700;
+  color: #fff;
+  margin-bottom: 8px;
+  text-shadow: 0 4px 15px rgba(0,0,0,0.5);
+}
+
+.section-desc {
+  font-size: 0.95rem;
+  color: var(--chalk-dim);
+  max-width: 580px;
+  margin-bottom: 30px;
+  line-height: 1.5;
+}
+
+/* Buttons */
+.btn-primary {
+  background: linear-gradient(135deg, var(--rose-primary) 0%, var(--rose-deep) 100%);
+  color: #fff;
+  border: none;
+  padding: 14px 34px;
+  border-radius: 50px;
+  font-family: var(--font-sans);
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  box-shadow: 0 10px 25px var(--rose-glow);
+  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.btn-primary:hover:not(:disabled) {
+  transform: translateY(-3px) scale(1.03);
+  box-shadow: 0 15px 35px var(--rose-glow);
+}
+
+.btn-primary:active:not(:disabled) {
+  transform: translateY(-1px) scale(0.98);
+}
+
+.btn-primary:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+  box-shadow: none;
+}
+
+.btn-large {
+  padding: 16px 42px;
+  font-size: 1.1rem;
+}
+
+.btn-outline {
+  background: rgba(255, 255, 255, 0.1);
+  color: #fff;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  backdrop-filter: blur(8px);
+  padding: 14px 32px;
+  border-radius: 50px;
+  font-family: var(--font-sans);
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+
+.btn-outline:hover {
+  background: rgba(255, 255, 255, 0.2);
+  border-color: #fff;
+  transform: translateY(-2px);
+}
+
+.btn-outline-small {
+  background: transparent;
+  color: var(--chalk-dim);
+  border: 1px dashed rgba(255, 255, 255, 0.3);
+  padding: 6px 16px;
+  border-radius: 30px;
+  font-size: 0.8rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.btn-outline-small:hover {
+  color: #fff;
+  border-color: #fff;
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.btn-heart-pulse {
+  animation: pulseButton 2s infinite ease-in-out;
+}
+
+@keyframes pulseButton {
+  0%, 100% { box-shadow: 0 10px 25px var(--rose-glow); }
+  50% { box-shadow: 0 15px 40px rgba(255, 94, 131, 0.7); }
+}
+
+/* Navigation Box between stages */
+.stage-nav-box {
+  margin-top: 35px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
+
+/* ================= STAGE 2: INTERACTIVE GIFTS & CHEST ================= */
+.gifts-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 25px;
+  width: 100%;
+  max-width: 950px;
+}
+
+.gift-card {
+  background: rgba(11, 49, 100, 0.75);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 20px;
+  padding: 30px 20px;
+  box-shadow: var(--shadow-medium);
+  backdrop-filter: blur(12px);
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  outline: none;
+}
+
+.gift-card:hover {
+  transform: translateY(-8px);
+  border-color: var(--rose-soft);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5), 0 0 25px var(--rose-glow);
+}
+
+.gift-card.opened {
+  background: rgba(253, 250, 242, 0.95);
+  color: var(--parchment-text);
+  border-color: var(--gold-accent);
+  box-shadow: 0 20px 45px rgba(0, 0, 0, 0.5), 0 0 35px var(--gold-glow);
+}
+
+.gift-box-icon {
+  font-size: 3.8rem;
+  margin-bottom: 15px;
+  transition: transform 0.3s ease;
+}
+
+.gift-card:hover .gift-box-icon {
+  transform: scale(1.15) rotate(5deg);
+}
+
+.gift-card-badge {
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--gold-accent);
+  margin-bottom: 6px;
+}
+
+.gift-card.opened .gift-card-badge {
+  color: var(--rose-deep);
+}
+
+.gift-card-title {
+  font-family: var(--font-serif);
+  font-size: 1.25rem;
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+
+.gift-card-hint {
+  font-size: 0.8rem;
+  color: var(--chalk-dim);
+}
+
+.gift-opened-content {
+  display: none;
+  margin-top: 15px;
+  animation: fadeInUp 0.5s ease;
+}
+
+.gift-card.opened .gift-box-icon,
+.gift-card.opened .chest-box-visual,
+.gift-card.opened .gift-card-hint {
+  display: none;
+}
+
+.gift-card.opened .gift-opened-content {
+  display: block;
+}
+
+.opened-emoji {
+  font-size: 2.4rem;
+  margin-bottom: 10px;
+}
+
+.opened-text {
+  font-family: var(--font-hand);
+  font-size: 1.25rem;
+  color: var(--parchment-text);
+  line-height: 1.4;
+}
+
+/* Treasure Chest SVG Visual */
+.chest-box-visual {
+  width: 140px;
+  height: 110px;
+  margin-bottom: 10px;
+  transition: transform 0.3s ease;
+}
+
+.gift-card:hover .chest-box-visual {
+  transform: scale(1.1);
+}
+
+.chest-svg {
+  width: 100%;
+  height: 100%;
+  filter: drop-shadow(0 6px 12px rgba(0, 0, 0, 0.4));
+}
+
+.chest-lid-group {
+  transition: transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+  transform-origin: 110px 85px;
+}
+
+.gift-highlight {
+  border: 1px solid var(--gold-accent);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4), 0 0 20px rgba(212, 175, 55, 0.3);
+}
+
+.gifts-progress-text {
+  font-size: 0.9rem;
+  color: var(--chalk-dim);
+}
+
+/* ================= STAGE 3: LOVE PUZZLE ================= */
+.puzzle-board {
+  display: flex;
+  gap: 15px;
+  margin-bottom: 30px;
+}
+
+.puzzle-slot {
+  width: 75px;
+  height: 85px;
+  border: 2px dashed rgba(255, 255, 255, 0.4);
+  background: rgba(11, 49, 100, 0.6);
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-serif);
+  font-size: 2.2rem;
+  font-weight: 700;
+  color: #fff;
+  box-shadow: inset 0 3px 8px rgba(0, 0, 0, 0.4);
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+.puzzle-slot.filled {
+  border-style: solid;
+  border-color: var(--gold-accent);
+  background: linear-gradient(135deg, var(--rose-primary) 0%, var(--rose-deep) 100%);
+  box-shadow: 0 8px 25px var(--rose-glow);
+  transform: scale(1.05);
+}
+
+.slot-placeholder {
+  color: rgba(255, 255, 255, 0.25);
+}
+
+.puzzle-slot.filled .slot-placeholder {
+  display: none;
+}
+
+.puzzle-tiles-tray {
+  display: flex;
+  gap: 16px;
+  margin-bottom: 25px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.puzzle-tile {
+  width: 70px;
+  height: 80px;
+  background: #fbf9f5;
+  border: none;
+  border-radius: 12px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.35);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.25s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.puzzle-tile:hover:not(:disabled) {
+  transform: translateY(-6px) scale(1.08);
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.5);
+}
+
+.puzzle-tile:disabled {
+  opacity: 0.25;
+  cursor: not-allowed;
+  transform: scale(0.9);
+}
+
+.tile-char {
+  font-family: var(--font-serif);
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--navy-rich);
+  line-height: 1;
+}
+
+.tile-sub {
+  font-size: 1rem;
+  margin-top: 4px;
+}
+
+.puzzle-status-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+.puzzle-hint-text {
+  font-size: 0.95rem;
+  color: var(--chalk-dim);
+}
+
+/* Success Banner */
+.puzzle-success-banner {
+  background: rgba(253, 250, 242, 0.96);
+  color: var(--parchment-text);
+  padding: 30px 40px;
+  border-radius: 20px;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6);
+  border: 2px solid var(--gold-accent);
+  margin-top: 20px;
+  max-width: 520px;
+  animation: zoomInSuccess 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+@keyframes zoomInSuccess {
+  from { opacity: 0; transform: scale(0.85); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+.success-hearts-burst {
+  font-size: 2.2rem;
+  margin-bottom: 12px;
+}
+
+.success-title {
+  font-family: var(--font-serif);
+  font-size: 1.8rem;
+  color: var(--rose-deep);
+  margin-bottom: 8px;
+}
+
+.success-desc {
+  font-family: var(--font-hand);
+  font-size: 1.25rem;
+  color: var(--parchment-sub);
+  margin-bottom: 20px;
+}
+
+/* ================= STAGE 4: POLAROID SCRAPBOOK GALLERY ================= */
+.scrapbook-gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+  gap: 30px;
+  width: 100%;
+  max-width: 1000px;
+  margin: 20px 0 35px 0;
+  justify-items: center;
+}
+
+.polaroid-item {
+  width: 100%;
+  max-width: 250px;
+  position: relative;
+  cursor: pointer;
+  transition: all 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.polaroid-item:hover {
+  transform: scale(1.08) rotate(0deg) !important;
+  z-index: 20;
+}
+
+.polaroid-frame {
+  background: #fbf9f5;
+  padding: 12px 12px 20px 12px;
+  border-radius: 4px;
+  box-shadow: var(--shadow-deep);
+  display: flex;
+  flex-direction: column;
+}
+
+.polaroid-photo {
+  width: 100%;
+  aspect-ratio: 1/1.15;
+  object-fit: cover;
+  border-radius: 2px;
+  background-color: #eee;
+}
+
+.polaroid-label {
+  display: flex;
+  flex-direction: column;
+  margin-top: 10px;
+  text-align: center;
+}
+
+.caption-handwritten {
+  font-family: var(--font-hand);
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--navy-darkest);
+  line-height: 1.2;
+}
+
+.caption-tag {
+  font-size: 0.7rem;
+  color: #888;
+  margin-top: 3px;
+  font-weight: 500;
+}
+
+/* Scrapbook Tilt variations */
+.tilt-left { transform: rotate(-3.5deg); }
+.tilt-right { transform: rotate(3deg); }
+.tilt-slight-left { transform: rotate(-1.5deg); }
+.tilt-slight-right { transform: rotate(2deg); }
+
+/* ================= STAGE 5: THE MAIN LOVE LETTER ================= */
+.letter-wrapper {
+  max-width: 780px;
+}
+
+.parchment-letter {
+  background: var(--parchment-base);
+  color: var(--parchment-text);
+  padding: 55px 50px 60px 50px;
+  border-radius: 12px;
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.65), inset 0 0 60px rgba(217, 195, 155, 0.35);
+  position: relative;
+  text-align: left;
+  border: 1px solid var(--parchment-dark);
+}
+
+/* Washi tapes on parchment corners */
+.parchment-tape-tl {
+  position: absolute;
+  top: -10px;
+  left: 30px;
+  width: 80px;
+  height: 25px;
+  background: var(--washi-tape);
+  transform: rotate(-3deg);
+  box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+}
+
+.parchment-tape-tr {
+  position: absolute;
+  top: -10px;
+  right: 30px;
+  width: 80px;
+  height: 25px;
+  background: var(--washi-tape);
+  transform: rotate(3deg);
+  box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+}
+
+.letter-top-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 2px dashed rgba(44, 36, 28, 0.18);
+  padding-bottom: 12px;
+  margin-bottom: 25px;
+}
+
+.letter-stamp-date {
+  font-family: var(--font-serif);
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--navy-rich);
+}
+
+.letter-stamp-number {
+  font-size: 0.8rem;
+  color: var(--parchment-sub);
+  font-weight: 600;
+  letter-spacing: 0.5px;
+}
+
+.letter-heading {
+  margin-bottom: 25px;
+}
+
+.letter-to {
+  display: block;
+  font-family: var(--font-hand);
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: var(--rose-deep);
+  margin-bottom: 4px;
+}
+
+.letter-title-main {
+  display: block;
+  font-family: var(--font-serif);
+  font-size: 2.2rem;
+  font-weight: 700;
+  color: var(--navy-rich);
+  line-height: 1.2;
+}
+
+.letter-body {
+  font-size: 1.05rem;
+  line-height: 1.8;
+  color: var(--parchment-text);
+}
+
+.letter-paragraph {
+  margin-bottom: 18px;
+}
+
+.letter-quote-callout {
+  background: rgba(255, 240, 245, 0.8);
+  border-left: 4px solid var(--rose-primary);
+  padding: 16px 20px;
+  margin: 22px 0;
+  border-radius: 0 8px 8px 0;
+  position: relative;
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: 1.15rem;
+  color: #4a212a;
+}
+
+.quote-symbol {
+  font-family: var(--font-serif);
+  font-size: 2rem;
+  color: var(--rose-soft);
+  line-height: 0;
+  vertical-align: -0.3em;
+  margin-right: 4px;
+}
+
+.quote-close {
+  margin-left: 4px;
+}
+
+.letter-wishes-list {
+  list-style: none;
+  margin: 18px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.letter-wishes-list li {
+  padding-left: 8px;
+  line-height: 1.6;
+}
+
+.letter-closing-accent {
+  font-family: var(--font-script);
+  font-size: 2rem;
+  color: var(--rose-deep);
+  text-align: center;
+  margin: 30px 0 10px 0;
+}
+
+.letter-signature-box {
+  margin-top: 35px;
+  padding-top: 20px;
+  border-top: 1px solid rgba(44, 36, 28, 0.15);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.sig-date {
+  font-size: 0.85rem;
+  color: var(--parchment-sub);
+  margin-bottom: 5px;
+}
+
+.sig-name {
+  font-family: var(--font-script);
+  font-size: 3rem;
+  color: var(--navy-rich);
+  line-height: 1;
+}
+
+.sig-note {
+  font-family: var(--font-hand);
+  font-size: 1.15rem;
+  color: var(--parchment-sub);
+  margin-top: 5px;
+}
+
+.closing-actions-box {
+  margin-top: 35px;
+  display: flex;
+  gap: 15px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+/* ================= PHOTO ZOOM MODAL ================= */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(4, 14, 30, 0.88);
+  backdrop-filter: blur(10px);
+  z-index: 200;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.modal-overlay.active {
+  display: flex;
+  opacity: 1;
+}
+
+.modal-content {
+  position: relative;
+  max-width: 500px;
+  width: 100%;
+  animation: modalPop 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+@keyframes modalPop {
+  from { transform: scale(0.85); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+
+.modal-close-btn {
+  position: absolute;
+  top: -45px;
+  right: 0;
+  background: none;
+  border: none;
+  color: #fff;
+  font-size: 2.5rem;
+  cursor: pointer;
+  line-height: 1;
+  transition: transform 0.2s ease;
+}
+
+.modal-close-btn:hover {
+  transform: scale(1.2);
+  color: var(--rose-primary);
+}
+
+.modal-polaroid {
+  background: #fff;
+  padding: 16px 16px 25px 16px;
+  border-radius: 4px;
+  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.7);
+  position: relative;
+}
+
+.modal-img {
+  width: 100%;
+  max-height: 65vh;
+  object-fit: contain;
+  border-radius: 2px;
+  background: #111;
+}
+
+.modal-video {
+  width: 100%;
+  max-height: 70vh;
+  object-fit: contain;
+  border-radius: 2px;
+  background: #000;
+}
+
+.modal-caption {
+  font-family: var(--font-hand);
+  font-size: 1.45rem;
+  color: var(--navy-darkest);
+  text-align: center;
+  margin-top: 15px;
+  font-weight: 700;
+}
+
+/* Stage Memories Container with Video Background */
+.stage-memories {
+  position: relative;
+  overflow: hidden;
+  border-radius: 24px;
+  padding: 35px 20px 50px 20px;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.7);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: rgba(7, 25, 51, 0.85);
+}
+
+.memories-wrapper {
+  position: relative;
+  z-index: 5;
+}
+
+/* Video Polaroid Cards */
+.polaroid-video-card {
+  border: 1.5px solid rgba(245, 199, 108, 0.5);
+}
+
+.polaroid-video-thumb-box {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1/1.15;
+  overflow: hidden;
+  border-radius: 2px;
+  background: #050505;
+}
+
+.polaroid-video-thumb {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  pointer-events: none;
+}
+
+.video-badge-overlay {
+  position: absolute;
+  bottom: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(11, 49, 100, 0.9);
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  backdrop-filter: blur(8px);
+  padding: 5px 14px;
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: #fff;
+  white-space: nowrap;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+  transition: all 0.25s ease;
+}
+
+.polaroid-video-card:hover .video-badge-overlay {
+  background: var(--rose-primary);
+  transform: translateX(-50%) scale(1.08);
+  box-shadow: 0 6px 16px var(--rose-glow);
+}
+
+.play-icon-glow {
+  color: var(--gold-accent);
+  font-size: 0.8rem;
+}
+
+/* ================= RESPONSIVE ADJUSTMENTS ================= */
+@media (max-width: 900px) {
+  .cover-centerpiece {
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .polaroid-teaser {
+    display: none; /* Hide side polaroids on tablet/mobile so envelope takes center stage */
+  }
+
+  .gifts-grid {
+    grid-template-columns: 1fr;
+    max-width: 450px;
+  }
+
+  .title-highlight {
+    font-size: 2.3rem;
+  }
+
+  .parchment-letter {
+    padding: 40px 25px;
+  }
+
+  .music-player-widget {
+    bottom: 15px;
+    left: 15px;
+    right: 15px;
+    max-width: none;
+  }
+}
+
+@media (max-width: 600px) {
+  .app-container {
+    padding: 20px 12px 100px 12px;
+  }
+
+  .cover-main-title .title-sub { font-size: 1.45rem; }
+  .cover-main-title .title-highlight { font-size: 1.95rem; }
+  .cover-main-title .title-love { font-size: 1.7rem; }
+
+  .badge-date {
+    padding: 4px 14px;
+    margin-bottom: 8px;
+  }
+  .badge-day { font-size: 1.35rem; }
+  .badge-month { font-size: 0.75rem; }
+  .tag-quote { font-size: 1.15rem; }
+
+  .envelope {
+    width: 280px;
+    height: 185px;
+  }
+
+  .envelope-letter {
+    width: 248px;
+    height: 155px;
+    padding: 14px;
+  }
+
+  .wax-seal {
+    width: 60px;
+    height: 60px;
+  }
+
+  .wax-seal-inner {
+    width: 48px;
+    height: 48px;
+  }
+
+  .wax-text { font-size: 0.85rem; }
+  .wax-heart { font-size: 0.75rem; }
+
+  .section-title {
+    font-size: 1.7rem;
+  }
+
+  .section-desc {
+    font-size: 0.88rem;
+    margin-bottom: 22px;
+  }
+
+  /* Puzzle responsive mobile */
+  .puzzle-board {
+    gap: 8px;
+    justify-content: center;
+  }
+
+  .puzzle-slot {
+    width: 58px;
+    height: 68px;
+    font-size: 1.6rem;
+    border-radius: 10px;
+  }
+
+  .puzzle-tiles-tray {
+    gap: 8px;
+  }
+
+  .puzzle-tile {
+    width: 54px;
+    height: 64px;
+    border-radius: 10px;
+  }
+
+  .tile-char {
+    font-size: 1.5rem;
+  }
+
+  .tile-sub {
+    font-size: 0.8rem;
+  }
+
+  /* Scrapbook memories gallery mobile */
+  .stage-memories {
+    padding: 25px 12px 35px 12px;
+    border-radius: 16px;
+  }
+
+  .scrapbook-gallery {
+    grid-template-columns: 1fr;
+    max-width: 320px;
+    gap: 24px;
+  }
+
+  /* Love Letter mobile */
+  .parchment-letter {
+    padding: 30px 18px 35px 18px;
+    border-radius: 10px;
+  }
+
+  .letter-to { font-size: 1.35rem; }
+  .letter-title-main { font-size: 1.6rem; }
+  .letter-body { font-size: 0.95rem; line-height: 1.7; }
+  .letter-quote-callout {
+    font-size: 1.05rem;
+    padding: 12px 14px;
+  }
+  .letter-closing-accent { font-size: 1.65rem; }
+  .sig-name { font-size: 2.3rem; }
+
+  .closing-actions-box {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .closing-actions-box .btn-primary,
+  .closing-actions-box .btn-outline {
+    width: 100%;
+    justify-content: center;
+    padding: 14px 20px;
+  }
+
+  .music-player-widget {
+    bottom: 10px;
+    left: 10px;
+    right: 10px;
+    padding: 8px 12px;
+    border-radius: 35px;
+    gap: 8px;
+  }
+
+  .vinyl-disc {
+    width: 38px;
+    height: 38px;
+  }
+
+  .track-title {
+    font-size: 0.78rem;
+  }
+
+  .track-subtitle {
+    font-size: 0.68rem;
+  }
+
+  .track-status {
+    font-size: 0.62rem;
+  }
+
+  .btn-ctrl {
+    width: 28px;
+    height: 28px;
+  }
+}
+
+@media (max-width: 360px) {
+  .envelope {
+    width: 260px;
+    height: 175px;
+  }
+
+  .envelope-letter {
+    width: 230px;
+    height: 145px;
+  }
+
+  .puzzle-slot {
+    width: 52px;
+    height: 62px;
+    font-size: 1.45rem;
+  }
+
+  .puzzle-tile {
+    width: 50px;
+    height: 60px;
+  }
+}

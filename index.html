@@ -1,0 +1,587 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Sweet Eighteen Cintaa!! ^^ ♡ Ndoro Putriku & Bibib</title>
+  <meta name="description" content="Surat cinta digital spesial Sweet Eighteen untuk Ndoro Putriku tersayang dari Bibib. 19 Oktober.">
+  
+  <!-- Favicon -->
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>💌</text></svg>">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;600;700&family=Great+Vibes&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Poppins:wght@300;400;500;600;700&family=Sacramento&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+  <!-- Canvas for floating romantic particles & celebration confetti -->
+  <canvas id="particleCanvas"></canvas>
+
+  <!-- Ambient Floating Stickers / Doodles for Scrapbook Theme -->
+  <div class="scrapbook-ambient">
+    <div class="chalk-doodle chalk-top-left">
+      <svg viewBox="0 0 120 120" fill="none" stroke="rgba(255,255,255,0.25)" stroke-width="2.5" stroke-linecap="round">
+        <path d="M10,25 Q35,5 60,30 T110,35" />
+        <path d="M25,50 Q45,20 80,45" />
+        <path d="M15,80 Q50,70 75,95" />
+      </svg>
+    </div>
+    <div class="chalk-doodle chalk-bottom-right">
+      <svg viewBox="0 0 140 140" fill="none" stroke="rgba(255,255,255,0.22)" stroke-width="2.5" stroke-linecap="round">
+        <path d="M20,110 C50,60 90,120 120,40" />
+        <circle cx="80" cy="50" r="3" fill="rgba(255,255,255,0.3)" />
+        <circle cx="110" cy="85" r="2" fill="rgba(255,255,255,0.3)" />
+      </svg>
+    </div>
+  </div>
+
+  <!-- Floating Music Widget (Weswey - Kesima) -->
+  <aside class="music-player-widget" id="musicPlayerWidget">
+    <div class="vinyl-disc" id="vinylDisc">
+      <div class="vinyl-center">
+        <span class="music-icon">🎵</span>
+      </div>
+    </div>
+    <div class="track-info">
+      <div class="track-title">Weswey — Kesima</div>
+      <div class="track-subtitle">Lagu Spesial Ndoro Putriku ♡</div>
+      <div class="track-status" id="trackStatus">Ketuk amplop untuk putar lagu ✨</div>
+    </div>
+    <div class="player-controls">
+      <button class="btn-ctrl" id="btnPlayPause" aria-label="Play or Pause" title="Putar / Jeda Musik">
+        <svg class="icon-play" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M8 5v14l11-7z"/>
+        </svg>
+        <svg class="icon-pause" viewBox="0 0 24 24" fill="currentColor" style="display:none;">
+          <path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/>
+        </svg>
+      </button>
+      <button class="btn-ctrl" id="btnMute" aria-label="Mute or Unmute" title="Suara Musik">
+        <svg class="icon-unmuted" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/>
+        </svg>
+        <svg class="icon-muted" viewBox="0 0 24 24" fill="currentColor" style="display:none;">
+          <path d="M16.5 12c0-1.77-1.02-3.29-2.5-4.03v2.21l2.45 2.45c.03-.2.05-.41.05-.63zm2.5 0c0 .94-.2 1.82-.54 2.64l1.51 1.51C20.63 14.91 21 13.5 21 12c0-4.28-2.99-7.86-7-8.77v2.06c2.89.86 5 3.54 5 6.71zM4.27 3L3 4.27l4.73 4.73H3v6h4l5 5v-6.73l4.25 4.25c-.67.52-1.42.93-2.25 1.18v2.06c1.38-.31 2.63-.95 3.69-1.81L19.73 21 21 19.73l-9-9L4.27 3zM12 4L9.91 6.09 12 8.18V4z"/>
+        </svg>
+      </button>
+    </div>
+  </aside>
+
+  <!-- Hidden YouTube Player iframe holder -->
+  <div id="ytPlayerContainer" style="position: absolute; left: -9999px; top: -9999px; width: 1px; height: 1px; overflow: hidden; pointer-events: none;">
+    <div id="ytPlayer"></div>
+  </div>
+
+  <!-- Top Navigation Controls -->
+  <div class="top-nav-controls">
+    <button class="nav-icon-btn" id="btnRestartJourney" title="Mulai dari Awal">
+      <span class="btn-icon">↺</span>
+      <span class="btn-text">Ulang</span>
+    </button>
+  </div>
+
+  <!-- MAIN INTERACTIVE CONTAINER -->
+  <main class="app-container" id="appContainer">
+
+    <!-- ==============================================
+         STAGE 1: WAX SEAL ENVELOPE (COVER CANVA STYLE)
+         ============================================== -->
+    <section class="stage stage-envelope active" id="stage1">
+      <div class="stage-content envelope-wrapper">
+        
+        <!-- Header Doodles & Greetings -->
+        <div class="cover-header">
+          <div class="badge-date">
+            <span class="badge-day">19</span>
+            <span class="badge-month">Oktober</span>
+          </div>
+          <div class="tag-quote">“You, always you.”</div>
+          <h1 class="cover-main-title">
+            <span class="title-sub">Happy Sweet Eighteen</span>
+            <span class="title-highlight">Ndoro Putriku Sayanggg</span>
+            <span class="title-love">cintaa!! ^^ ♡</span>
+          </h1>
+        </div>
+
+        <!-- Scrapbook Polaroid Teaser & Envelope -->
+        <div class="cover-centerpiece">
+          <!-- Left Polaroid Card -->
+          <div class="polaroid-card polaroid-teaser polaroid-left">
+            <div class="tape-strip tape-top"></div>
+            <div class="polaroid-img-box">
+              <img src="./aset/snaptik-app-7686905128770686228-slide-3.jpg.jpeg" alt="Ndoro Putriku & Bibib" class="polaroid-img">
+            </div>
+            <div class="polaroid-caption">Untuk ndoro putriku ♡</div>
+          </div>
+
+          <!-- The Realistic 3D Interactive Envelope -->
+          <div class="envelope-container" id="envelopeContainer" role="button" tabindex="0" aria-label="Buka Amplop Surat Cinta">
+            <div class="envelope">
+              <!-- Back Fold -->
+              <div class="envelope-back"></div>
+              
+              <!-- Letter Paper Peeking Out -->
+              <div class="envelope-letter" id="envelopeLetter">
+                <div class="letter-mini-lines">
+                  <div class="mini-line w-80"></div>
+                  <div class="mini-line w-60"></div>
+                  <div class="mini-line w-70"></div>
+                </div>
+                <div class="mini-stamp">💌 18th</div>
+              </div>
+
+              <!-- Pocket (Front Flaps) -->
+              <div class="envelope-pocket"></div>
+
+              <!-- Top Flap -->
+              <div class="envelope-flap" id="envelopeFlap"></div>
+
+              <!-- Wax Seal Button -->
+              <div class="wax-seal" id="waxSeal">
+                <div class="wax-seal-inner">
+                  <span class="wax-text">Open</span>
+                  <span class="wax-heart">♡</span>
+                </div>
+                <div class="seal-glow"></div>
+              </div>
+            </div>
+
+            <!-- Hint Arrow & Prompt -->
+            <div class="envelope-prompt">
+              <span class="pulse-sparkle">✨</span>
+              <span>Ketuk segel lilin untuk membuka surat cintamu</span>
+              <span class="pulse-sparkle">✨</span>
+            </div>
+          </div>
+
+          <!-- Right Polaroid Card -->
+          <div class="polaroid-card polaroid-teaser polaroid-right">
+            <div class="tape-strip tape-top"></div>
+            <div class="polaroid-img-box">
+              <img src="./aset/snaptik-app-7686905128770686228-slide-7.jpg.jpeg" alt="Ndoro Putriku" class="polaroid-img">
+            </div>
+            <div class="polaroid-caption">Dari: bibib kesayanganmu</div>
+          </div>
+        </div>
+
+        <!-- Romantic Quote Footer Sticker -->
+        <div class="cover-footer-sticker">
+          <div class="sticker-paper">
+            <span>“Chosen. Loved. Forever and always.”</span>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ==============================================
+         STAGE 2: PETI HARTA KARUN & KOTAK KADO INTERAKTIF
+         ============================================== -->
+    <section class="stage stage-gifts" id="stage2">
+      <div class="stage-content gifts-wrapper">
+        
+        <div class="section-badge">✦ HADIAH SPESIAL 19 OKTOBER ✦</div>
+        <h2 class="section-title">Buka Setiap Hadiah Satu Per Satu ♡</h2>
+        <p class="section-desc">Ada beberapa kejutan kecil dari bibib sebelum kamu baca surat rahasianya...</p>
+
+        <!-- 3 Interactive Gift Items -->
+        <div class="gifts-grid">
+          
+          <!-- Gift 1: Buket Bunga Cantik -->
+          <div class="gift-card" id="giftFlowers" data-opened="false" tabindex="0">
+            <div class="gift-box-icon">💐</div>
+            <div class="gift-card-badge">Hadiah 1</div>
+            <h3 class="gift-card-title">Buket Bunga Impian</h3>
+            <p class="gift-card-hint">Ketuk untuk buka</p>
+            <div class="gift-opened-content">
+              <div class="opened-emoji">🌸🌺🌷</div>
+              <p class="opened-text">“Bunga terindah di dunia masih kalah cantik sama senyuman manis ndoro putriku!”</p>
+            </div>
+          </div>
+
+          <!-- Gift 2: Peti Harta Karun (Treasure Chest - UcapanPacar style) -->
+          <div class="gift-card gift-highlight" id="giftTreasure" data-opened="false" tabindex="0">
+            <div class="chest-box-visual">
+              <svg class="chest-svg" viewBox="0 0 220 180" xmlns="http://www.w3.org/2000/svg">
+                <defs>
+                  <linearGradient id="chestGrad" x1="0" y1="0" x2="0" y2="1">
+                    <stop offset="0%" stop-color="#E29B52"/>
+                    <stop offset="100%" stop-color="#964E1C"/>
+                  </linearGradient>
+                  <linearGradient id="goldGrad" x1="0" y1="0" x2="1" y2="1">
+                    <stop offset="0%" stop-color="#FFE79A"/>
+                    <stop offset="50%" stop-color="#D4AF37"/>
+                    <stop offset="100%" stop-color="#AA7C11"/>
+                  </linearGradient>
+                </defs>
+                <!-- Shadow -->
+                <ellipse cx="110" cy="170" rx="80" ry="8" fill="rgba(0,0,0,0.3)"/>
+                <!-- Chest Base -->
+                <rect x="25" y="80" width="170" height="85" rx="12" fill="url(#chestGrad)"/>
+                <rect x="22" y="125" width="176" height="12" rx="3" fill="url(#goldGrad)"/>
+                <!-- Chest Lid (Animatable) -->
+                <g class="chest-lid-group" id="chestLidGroup">
+                  <path d="M25,85 C25,25 195,25 195,85 Z" fill="url(#chestGrad)"/>
+                  <rect x="22" y="80" width="176" height="14" rx="4" fill="url(#goldGrad)"/>
+                  <circle cx="110" cy="85" r="9" fill="url(#goldGrad)"/>
+                  <circle cx="110" cy="85" r="5" fill="#4A1E00"/>
+                  <!-- Heart emblem on lid -->
+                  <path d="M110,50 C110,50 98,40 98,32 C98,25 110,22 110,31 C110,22 122,25 122,32 C122,40 110,50 110,50 Z" fill="#FF708F"/>
+                </g>
+              </svg>
+            </div>
+            <div class="gift-card-badge">Hadiah 2</div>
+            <h3 class="gift-card-title">Peti Harta Karun Cinta</h3>
+            <p class="gift-card-hint">Ketuk untuk buka peti</p>
+            <div class="gift-opened-content">
+              <div class="opened-emoji">👑💎✨</div>
+              <p class="opened-text">“Tahu nggak apa harta paling berharga buat bibib di dunia ini? Jawabannya: <strong>Ndoro Putriku</strong>.”</p>
+            </div>
+          </div>
+
+          <!-- Gift 3: Kue Ulang Tahun Sweet 18 -->
+          <div class="gift-card" id="giftCake" data-opened="false" tabindex="0">
+            <div class="gift-box-icon">🎂</div>
+            <div class="gift-card-badge">Hadiah 3</div>
+            <h3 class="gift-card-title">Sweet 18 Cupcake</h3>
+            <p class="gift-card-hint">Ketuk untuk tiup lilin</p>
+            <div class="gift-opened-content">
+              <div class="opened-emoji">🕯️🎉✨</div>
+              <p class="opened-text">“Fuuuh~! Lilin ke-18 ditiup! Semoga semua impian dan harapan ndoro putriku terwujud! Amin!”</p>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Progress Tracker & Next Stage Button -->
+        <div class="stage-nav-box">
+          <div class="gifts-progress-text" id="giftsProgressText">Buka ketiga hadiah di atas (0/3)</div>
+          <button class="btn-primary" id="btnToPuzzle" disabled>
+            <span>Lanjut ke Misi Cinta</span>
+            <span class="btn-arrow">→</span>
+          </button>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ==============================================
+         STAGE 3: GAME PUZZLE KATA "L - O - V - E"
+         ============================================== -->
+    <section class="stage stage-puzzle" id="stage3">
+      <div class="stage-content puzzle-wrapper">
+        
+        <div class="section-badge">✦ TANTANGAN CINTA UNTUK NDORO PUTRIKU ✦</div>
+        <h2 class="section-title">Susun Huruf Cinta untuk Membuka Surat ♡</h2>
+        <p class="section-desc">Ketuk huruf-huruf di bawah ini untuk menyusun kata rahasia ke dalam slot!</p>
+
+        <!-- The Target Slots Board -->
+        <div class="puzzle-board">
+          <div class="puzzle-slot" data-slot="0" data-expected="L">
+            <span class="slot-placeholder">_</span>
+            <span class="slot-letter"></span>
+          </div>
+          <div class="puzzle-slot" data-slot="1" data-expected="O">
+            <span class="slot-placeholder">_</span>
+            <span class="slot-letter"></span>
+          </div>
+          <div class="puzzle-slot" data-slot="2" data-expected="V">
+            <span class="slot-placeholder">_</span>
+            <span class="slot-letter"></span>
+          </div>
+          <div class="puzzle-slot" data-slot="3" data-expected="E">
+            <span class="slot-placeholder">_</span>
+            <span class="slot-letter"></span>
+          </div>
+        </div>
+
+        <!-- The Scrambled Tiles Tray -->
+        <div class="puzzle-tiles-tray" id="puzzleTilesTray">
+          <button class="puzzle-tile" data-letter="O" id="tileO">
+            <span class="tile-char">O</span>
+            <span class="tile-sub">🧸</span>
+          </button>
+          <button class="puzzle-tile" data-letter="L" id="tileL">
+            <span class="tile-char">L</span>
+            <span class="tile-sub">💖</span>
+          </button>
+          <button class="puzzle-tile" data-letter="E" id="tileE">
+            <span class="tile-char">E</span>
+            <span class="tile-sub">🎀</span>
+          </button>
+          <button class="puzzle-tile" data-letter="V" id="tileV">
+            <span class="tile-char">V</span>
+            <span class="tile-sub">🌷</span>
+          </button>
+        </div>
+
+        <!-- Puzzle Feedback & Success Box -->
+        <div class="puzzle-status-box" id="puzzleStatusBox">
+          <div class="puzzle-hint-text" id="puzzleHintText">Susun huruf: <strong>L - O - V - E</strong></div>
+          <button class="btn-outline-small" id="btnResetPuzzle">Ulangi Susunan ↺</button>
+        </div>
+
+        <!-- Success Reveal Banner (Hidden until completed) -->
+        <div class="puzzle-success-banner" id="puzzleSuccessBanner" style="display: none;">
+          <div class="success-hearts-burst">💖 ✨ 💌 ✨ 💖</div>
+          <h3 class="success-title">Yayy Finishh! Katanya: L-O-V-E ♡</h3>
+          <p class="success-desc">Surat cinta dan album kenangan ndoro putriku berhasil dibuka!</p>
+          <button class="btn-primary" id="btnToMemories">
+            <span>Buka Galeri Kenangan & Surat Cinta</span>
+            <span class="btn-arrow">💌</span>
+          </button>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ==============================================
+         STAGE 4: GALERI KENANGAN POLAROID (SCRAPBOOK WALL)
+         ============================================== -->
+    <section class="stage stage-memories" id="stage4">
+      <!-- Continuous Video Background specifically for Galeri Kenangan -->
+      <div class="memories-video-bg-container" id="videoBgContainer">
+        <video id="bgVideo1" class="bg-video active" muted playsinline preload="auto"></video>
+        <video id="bgVideo2" class="bg-video next" muted playsinline preload="auto"></video>
+        <div class="memories-video-overlay"></div>
+      </div>
+
+      <div class="stage-content memories-wrapper">
+        
+        <div class="section-badge">✦ SWEET MEMORIES • BIBIB & NDORO PUTRIKU ✦</div>
+        <h2 class="section-title">Setiap Detik Bersamamu adalah Anugerah ♡</h2>
+        <p class="section-desc">Ketuk foto atau video manapun untuk melihat kenangan manis kita lebih dekat...</p>
+
+        <!-- Clothesline Scrapbook Grid -->
+        <div class="scrapbook-gallery">
+
+          <!-- Video Item 1: VID-20260825-WA0032.mp4 -->
+          <div class="polaroid-item polaroid-video-card tilt-left" data-video="./aset/VID-20260825-WA0032.mp4" data-caption="Video kenangan manis bersama ndoro putriku ♡">
+            <div class="tape-strip tape-center"></div>
+            <div class="polaroid-frame">
+              <div class="polaroid-video-thumb-box">
+                <video src="./aset/VID-20260825-WA0032.mp4" muted loop playsinline autoplay class="polaroid-photo polaroid-video-thumb"></video>
+                <div class="video-badge-overlay">
+                  <span class="play-icon-glow">▶</span>
+                  <span class="badge-label">Putar Video</span>
+                </div>
+              </div>
+              <div class="polaroid-label">
+                <span class="caption-handwritten">Video Manis Kita 🎬</span>
+                <span class="caption-tag">#video-kenangan-1</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Video Item 2: VID20260823171738.mp4 -->
+          <div class="polaroid-item polaroid-video-card tilt-right" data-video="./aset/VID20260823171738.mp4" data-caption="Momen indah 23 Agustus — video spesial penuh tawa dan cinta bareng bibib.">
+            <div class="tape-strip tape-corner-left"></div>
+            <div class="polaroid-frame">
+              <div class="polaroid-video-thumb-box">
+                <video src="./aset/VID20260823171738.mp4" muted loop playsinline autoplay class="polaroid-photo polaroid-video-thumb"></video>
+                <div class="video-badge-overlay">
+                  <span class="play-icon-glow">▶</span>
+                  <span class="badge-label">Putar Video</span>
+                </div>
+              </div>
+              <div class="polaroid-label">
+                <span class="caption-handwritten">Momen 23 Agustus 🎬</span>
+                <span class="caption-tag">#video-kenangan-2</span>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Photo 1: IMG_7068.JPG.jpeg -->
+          <div class="polaroid-item tilt-left" data-img="./aset/IMG_7068.JPG.jpeg" data-caption="Ndoro putriku yang selalu manis dan bikin kuterkesima ♡">
+            <div class="tape-strip tape-center"></div>
+            <div class="polaroid-frame">
+              <img src="./aset/IMG_7068.JPG.jpeg" alt="Kenangan Ndoro Putriku 1" class="polaroid-photo" loading="lazy">
+              <div class="polaroid-label">
+                <span class="caption-handwritten">Paras ayumu selalu memikat ♡</span>
+                <span class="caption-tag">#ndoro-putriku</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Photo 2: IMG20260823165309.jpg.jpeg -->
+          <div class="polaroid-item tilt-right" data-img="./aset/IMG20260823165309.jpg.jpeg" data-caption="Momen berharga di 23 Agustus — senyum yang selalu bibib jaga.">
+            <div class="tape-strip tape-corner-left"></div>
+            <div class="polaroid-frame">
+              <img src="./aset/IMG20260823165309.jpg.jpeg" alt="Kenangan Ndoro Putriku 2" class="polaroid-photo" loading="lazy">
+              <div class="polaroid-label">
+                <span class="caption-handwritten">Senyum favorit bibib ✨</span>
+                <span class="caption-tag">#sweet-moment</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Photo 3: IMG20260823171140.jpg.jpeg -->
+          <div class="polaroid-item tilt-slight-left" data-img="./aset/IMG20260823171140.jpg.jpeg" data-caption="Dunia terasa lebih hangat dan berwarna setiap ada kamu di dekat bibib.">
+            <div class="tape-strip tape-center"></div>
+            <div class="polaroid-frame">
+              <img src="./aset/IMG20260823171140.jpg.jpeg" alt="Kenangan Ndoro Putriku 3" class="polaroid-photo" loading="lazy">
+              <div class="polaroid-label">
+                <span class="caption-handwritten">Bersamamu selalu istimewa ♡</span>
+                <span class="caption-tag">#bahagia-berdua</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Photo 4: IMG20260823202445.jpg.jpeg -->
+          <div class="polaroid-item tilt-right" data-img="./aset/IMG20260823202445.jpg.jpeg" data-caption="Malam yang indah bareng ndoro putriku.">
+            <div class="tape-strip tape-corner-right"></div>
+            <div class="polaroid-frame">
+              <img src="./aset/IMG20260823202445.jpg.jpeg" alt="Kenangan Ndoro Putriku 4" class="polaroid-photo" loading="lazy">
+              <div class="polaroid-label">
+                <span class="caption-handwritten">Malam penuh tawa & cerita 🌙</span>
+                <span class="caption-tag">#special-night</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Photo 5: Screenshot_2026-08-31-18-56-34-93_6012fa4d4ddec268fc5c7112cbb265e7.jpg.jpeg -->
+          <div class="polaroid-item tilt-left" data-img="./aset/Screenshot_2026-08-31-18-56-34-93_6012fa4d4ddec268fc5c7112cbb265e7.jpg.jpeg" data-caption="Tangkapan layar kecil tapi punya seribu arti buat kita.">
+            <div class="tape-strip tape-center"></div>
+            <div class="polaroid-frame">
+              <img src="./aset/Screenshot_2026-08-31-18-56-34-93_6012fa4d4ddec268fc5c7112cbb265e7.jpg.jpeg" alt="Kenangan Ndoro Putriku 5" class="polaroid-photo" loading="lazy">
+              <div class="polaroid-label">
+                <span class="caption-handwritten">Bukti cinta yang abadi 💌</span>
+                <span class="caption-tag">#memories</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Photo 6: snaptik-app-7686905128770686228-slide-3.jpg.jpeg -->
+          <div class="polaroid-item tilt-slight-right" data-img="./aset/snaptik-app-7686905128770686228-slide-3.jpg.jpeg" data-caption="Foto gemas kita berdua! Tetap bareng bibib terus ya sayang!">
+            <div class="tape-strip tape-corner-left"></div>
+            <div class="polaroid-frame">
+              <img src="./aset/snaptik-app-7686905128770686228-slide-3.jpg.jpeg" alt="Kenangan Ndoro Putriku 6" class="polaroid-photo" loading="lazy">
+              <div class="polaroid-label">
+                <span class="caption-handwritten">You, always you ♡</span>
+                <span class="caption-tag">#bibib-ndoro</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Photo 7: snaptik-app-7686905128770686228-slide-7.jpg.jpeg -->
+          <div class="polaroid-item tilt-left" data-img="./aset/snaptik-app-7686905128770686228-slide-7.jpg.jpeg" data-caption="Selamat 18 tahun, bidadari kesayangan bibib!">
+            <div class="tape-strip tape-center"></div>
+            <div class="polaroid-frame">
+              <img src="./aset/snaptik-app-7686905128770686228-slide-7.jpg.jpeg" alt="Kenangan Ndoro Putriku 7" class="polaroid-photo" loading="lazy">
+              <div class="polaroid-label">
+                <span class="caption-handwritten">Forever & Always yours 💕</span>
+                <span class="caption-tag">#sweet18</span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Navigation Button to Main Letter -->
+        <div class="stage-nav-box">
+          <button class="btn-primary btn-large" id="btnToLetter">
+            <span>Baca Surat Cinta Spesial Sweet 18</span>
+            <span class="btn-arrow">📜</span>
+          </button>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ==============================================
+         STAGE 5: SURAT CINTA PUITIS (THE MAIN LOVE LETTER)
+         ============================================== -->
+    <section class="stage stage-letter" id="stage5">
+      <div class="stage-content letter-wrapper">
+        
+        <!-- Vintage Parchment Letter Card -->
+        <article class="parchment-letter">
+          <div class="parchment-tape-tl"></div>
+          <div class="parchment-tape-tr"></div>
+          
+          <div class="letter-top-meta">
+            <span class="letter-stamp-date">19 Oktober</span>
+            <span class="letter-stamp-number">No. 01 / Sweet Eighteen</span>
+          </div>
+
+          <h2 class="letter-heading">
+            <span class="letter-to">Untuk Ndoro Putriku Tersayang,</span>
+            <span class="letter-title-main">Happy Sweet Eighteen Cintaa!! ^^ ♡</span>
+          </h2>
+
+          <div class="letter-body">
+            <p class="letter-paragraph">
+              Di tanggal <strong>19 Oktober</strong> yang begitu istimewa ini, ndoro putriku resmi berumur 18 tahun! Rasanya waktu berjalan begitu cepat, tapi setiap detik yang bibib lewati bersamamu selalu terasa sangat berharga dan berarti.
+            </p>
+
+            <p class="letter-paragraph">
+              Terima kasih banyak yaa, sayang... Terima kasih sudah lahir ke dunia ini dan memilih untuk hadir di dalam hidup bibib. Terima kasih sudah menjadi alasan di balik senyuman bibib setiap hari, menjadi tempat bibib pulang, dan menjadi sosok paling berharga yang selalu bibib syukuri kehadirannya.
+            </p>
+
+            <div class="letter-quote-callout">
+              <span class="quote-symbol">“</span>
+              <p>Melihatmu tersenyum saja sudah cukup membuat hati bibib terkesima dan jatuh cinta lagi, lagi, dan lagi setiap harinya.</p>
+              <span class="quote-symbol quote-close">”</span>
+            </div>
+
+            <p class="letter-paragraph">
+              Di usiamu yang ke-18 ini, bibib memanjatkan doa terbaik yang tak pernah putus untukmu:
+            </p>
+
+            <ul class="letter-wishes-list">
+              <li>✨ <strong>Kesehatan & Kebahagiaan:</strong> Semoga ndoro putriku selalu diberikan kesehatan, keceriaan yang melimpah, dan hati yang senantiasa tenang.</li>
+              <li>🌸 <strong>Impian & Cita-Cita:</strong> Semoga semua langkah, cita-cita, dan impian besarmu dimudahkan serta tercapai dengan gemilang.</li>
+              <li>💖 <strong>Kekuatan & Perlindungan:</strong> Jangan pernah ragu sama kemampuan dirimu sendiri ya, karena di mata bibib, kamu adalah perempuan yang luar biasa hebat dan tangguh.</li>
+              <li>🤍 <strong>Kebersamaan Kita:</strong> Semoga cinta, kasih sayang, dan tawa di antara kita berdua akan selalu terjaga dan bertumbuh semakin indah selamanya.</li>
+            </ul>
+
+            <p class="letter-paragraph">
+              Apapun fase yang akan kamu jalani ke depan, ingat ya sayang... bibib akan selalu ada di sini, di sampingmu, menggenggam tanganmu, menemani setiap langkah dan perjuanganmu.
+            </p>
+
+            <p class="letter-paragraph letter-closing-accent">
+              <em>You, always you. Chosen. Loved. Forever and always.</em>
+            </p>
+          </div>
+
+          <div class="letter-signature-box">
+            <div class="sig-date">19 Oktober • With all my heart,</div>
+            <div class="sig-name">Bibib ♡</div>
+            <div class="sig-note">Pasangan & Pengagum Setiamu Selamanya</div>
+          </div>
+        </article>
+
+        <!-- Final Closing Action Box -->
+        <div class="closing-actions-box">
+          <button class="btn-primary btn-large btn-heart-pulse" id="btnSendReply">
+            <span>Balas Surat ke Bibib di WhatsApp 💬</span>
+          </button>
+          <button class="btn-outline" id="btnRestartFromLetter">
+            <span>Putar Ulang dari Awal ↺</span>
+          </button>
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Photo Zoom Modal for Polaroid Details -->
+  <div class="modal-overlay" id="photoModal" aria-hidden="true" role="dialog">
+    <div class="modal-content">
+      <button class="modal-close-btn" id="modalCloseBtn" aria-label="Tutup Foto">&times;</button>
+      <div class="modal-polaroid">
+        <div class="tape-strip tape-center"></div>
+        <img src="" alt="Zoomed Photo" id="modalImg" class="modal-img">
+        <video src="" id="modalVideo" class="modal-video" controls playsinline style="display:none;"></video>
+        <div class="modal-caption" id="modalCaption"></div>
+      </div>
+    </div>
+  </div>
+
+  <script type="module" src="./script.js"></script>
+</body>
+</html>
