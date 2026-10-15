@@ -102,8 +102,8 @@
      - aset/VID20260823171738.mp4
      ====================================================== */
   const videoPlaylist = [
-    './aset/VID-20260825-WA0032.mp4',
-    './aset/VID20260823171738.mp4'
+    '/aset/VID-20260825-WA0032.mp4',
+    '/aset/VID20260823171738.mp4'
   ];
 
   let currentVideoIndex = 0;
