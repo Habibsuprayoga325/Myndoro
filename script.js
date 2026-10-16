@@ -112,8 +112,12 @@
   let activeVideoEl = bgVideo1;
   let nextVideoEl = bgVideo2;
   let isTransitioning = false;
+  let videoBackgroundInitialized = false;
 
   function initVideoBackground() {
+    if (videoBackgroundInitialized) return;
+    videoBackgroundInitialized = true;
+
     bgVideo1.src = videoPlaylist[0];
     bgVideo2.src = videoPlaylist[1];
 
@@ -128,7 +132,7 @@
       playPromise.catch(() => {
         // Autoplay policy might wait for user click
         const resumeVideoOnUserAction = () => {
-          activeVideoEl.play();
+          if (activeVideoEl) activeVideoEl.play().catch(() => {});
           window.removeEventListener('click', resumeVideoOnUserAction);
           window.removeEventListener('touchstart', resumeVideoOnUserAction);
         };
@@ -487,6 +491,19 @@
       }
     });
 
+    // Stage 4 (Memories gallery): ensure video background is initialized and playing
+    if (targetIndex === 3) {
+      initVideoBackground();
+      if (activeVideoEl && activeVideoEl.paused) {
+        activeVideoEl.play().catch(() => {});
+      }
+    } else {
+      // Pause video when leaving Stage 4 to conserve mobile CPU/battery
+      if (activeVideoEl && !activeVideoEl.paused) {
+        activeVideoEl.pause();
+      }
+    }
+
     // Big confetti celebratory burst on stage transition
     spawnBurst(window.innerWidth / 2, window.innerHeight * 0.4, 35);
   }
@@ -614,6 +631,8 @@
       puzzleHintText.innerHTML = `<span style="color: #4cd137;">Kata LOVE sempurna! 🎉</span>`;
       puzzleSuccessBanner.style.display = 'block';
       spawnBurst(window.innerWidth / 2, window.innerHeight * 0.45, 60);
+      // Pre-warm background video right before transitioning to gallery
+      initVideoBackground();
     } else {
       // MISSPELLED
       sfxPop(300);
@@ -759,9 +778,8 @@
   if (btnRestartFromLetter) btnRestartFromLetter.addEventListener('click', restartJourney);
   if (btnRestartJourney) btnRestartJourney.addEventListener('click', restartJourney);
 
-  // Initialize on load
+  // Initialize on load (defer heavy background videos)
   window.addEventListener('DOMContentLoaded', () => {
-    initVideoBackground();
     loadYouTubeAPI();
   });
 
